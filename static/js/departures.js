@@ -87,7 +87,8 @@ $(document).ready(function() {
 		});
 	};
 	
-	refreshGrid();
+	window.setInterval(refreshGrid, 1000*90)
+	window.setTimeout(refreshGrid, 1200)
 
   
 });
