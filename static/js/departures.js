@@ -26,7 +26,13 @@ $(document).ready(function() {
 
 
 	function rowText(train) {
-			contents = train["time"] + ": " +train["dest"] + '<span class="platform">' + train["plat"] + '&nbsp;</span>'
+			if (train["plat"] === undefined){
+				contents = train["time"] + ": " +train["dest"];
+			}
+			else{
+				contents = train["time"] + ": " +train["dest"] + '<span class="platform">' + train["plat"] + '&nbsp;</span>';
+			}
+			
 			return contents;
 		}
 		
