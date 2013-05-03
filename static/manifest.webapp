@@ -1,0 +1,13 @@
+{
+  "name": "Departures",
+  "description": "Live Departure Boards for UK Rail Stations",
+  "launch_path": "/index.html",
+  "developer": {
+    "name": "Sam Machin",
+    "url": "http://sammachin.com"
+  },
+  "icons": {
+    "64": "/style/icons/icon.png"
+  },
+  "orientation": "portrait-primary"
+}

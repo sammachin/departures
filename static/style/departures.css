@@ -1,0 +1,90 @@
+body {
+	background: #000;
+	font-family: Helvetica, Arial, "Comic Sans MS", sans-serif;
+	color: #fff;
+}
+
+.wrapper {
+	margin: 6px auto;
+	width: 96%;
+	padding: 0;
+}
+
+.flipchar-top, .flipchar-base, .flipchar-bottom, .flipchar-drop {
+	border-radius: 5px;
+	display: block;
+	float: left;
+	text-transform: uppercase;
+	text-align: left;
+	padding-left: 5px;
+	overflow: hidden;
+	font-family: Helvetica, "Comic Sans MS", sans-serif;
+	font-size: 20px;
+	width: 100%;
+	height: 29px;
+	margin: 2px 0;
+	color: #fff;
+	background: #222222;
+	-webkit-transition: -webkit-transform 0.3s ease-in;
+}
+
+.flipchar-top {
+	padding-top: 2px;
+	height: 10px;
+	overflow: hidden;
+	border-bottom: 1px solid #000;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	margin-top: -21px;
+}
+
+.flipchar-base {
+	padding-top: 6px;
+}
+
+.flipchar-bottom, .flipchar-drop {
+	margin-top: -19px;
+	height: 10px;
+	overflow: hidden;
+	padding-top: 2px;
+	
+	-webkit-transition: -webkit-transform 0.3s ease-out;
+}
+
+.flipchar-bottom .inner, .flipchar-drop .inner {
+	margin-top: -11px;
+	display: block;
+}
+
+
+.flipchar-drop {
+	-webkit-transform-origin: top center;
+	-webkit-transform: rotateX(90deg);
+}
+
+.flipchar-drop.on {
+	-webkit-transform-origin: top center;
+	-webkit-transform: rotateX(0);
+}
+
+.flipchar-drop.off {
+	-webkit-transform-origin: top center;
+	-webkit-transform: rotateX(90deg);
+	-webkit-transition: -webkit-transform 0s ease-in;
+}
+
+
+.flipchar-top.on {
+	-webkit-transform-origin: bottom center;
+	-webkit-transform: rotateX(90deg);
+}
+.flipchar-top.off {
+	-webkit-transform-origin: bottom center;
+	-webkit-transform: rotateX(0);
+	-webkit-transition: -webkit-transform 0s ease-in;
+}
+
+
+a, a:hover, a:visited, a:active, a:focus {
+	color: #fff;
+}
