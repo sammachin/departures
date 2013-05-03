@@ -73,7 +73,7 @@ $(document).ready(function() {
 	blocky(["Welcome", "to", "Departures"])
 		
 	var refreshGrid = function(){
-		$.getJSON('/platformdata?stn=YAT', function(data) { 
+		$.getJSON('/platformdata?stn=BRI', function(data) { 
 			var lines = data['trains']
 			if(shouldRender(lines, last)){
 				blocky(lines);
