@@ -6,12 +6,15 @@ import urllib
 import re
 import urllib2
 import json
+import os.path
 
 def fake_wait_for_occupied_port(host, port): 
 	return
 
 servers.wait_for_occupied_port = fake_wait_for_occupied_port
 
+global current_dir
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
 def lookup_stn(code):
 	for station in stations:
@@ -78,7 +81,10 @@ class Start(object):
 	index.exposed = True
 	platformdata.exposed = True
 
+conf = {'/static': {'tools.staticdir.on': True,
+                    'tools.staticdir.dir': os.path.join(current_dir, 'static'),
+                    'tools.staticdir.content_types': {'webapp': 'application/x-web-app-manifest+json',}}}
 
 cherrypy.config.update({'server.socket_host': '0.0.0.0',})
 cherrypy.config.update({'server.socket_port': int(os.environ.get('PORT', '5000')),})
-cherrypy.quickstart(Start(), "/", "app.cfg")
+cherrypy.quickstart(Start(), "/", conf)
