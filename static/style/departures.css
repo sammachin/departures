@@ -85,6 +85,10 @@ body {
 }
 
 
+.platform {
+	 float:right
+}
+
 a, a:hover, a:visited, a:active, a:focus {
 	color: #fff;
 }

@@ -24,11 +24,18 @@ $(document).ready(function() {
 		
 	}
 
-	function blocky(lines){
-		function cell(contents, rowid){
-			return '<div id="row'+ rowid +'" class="row"><span class="flipchar-base"><span class="inner">'+ contents +'</span></span><span class="flipchar-top"><span class="inner">'+ contents +'</span></span><span class="flipchar-bottom"><span class="inner">'+ contents +'</span></span><span class="flipchar-drop"><span class="inner">'+ contents +'</span></span></div><div style="clear:both;"></div>';
+
+	function rowText(train) {
+			contents = train["time"] + ": " +train["dest"] + '<span class="platform">' + train["plat"] + '&nbsp;</span>'
+			return contents;
 		}
 		
+
+	function blocky(lines){
+		function cell(contents, rowid){
+			console.log(contents);
+			return '<div id="row'+ rowid +'" class="row"><span class="flipchar-base"><span class="inner">'+ contents +'</span></span><span class="flipchar-top"><span class="inner">'+ contents +'</span></span><span class="flipchar-bottom"><span class="inner">'+ contents +'</span></span><span class="flipchar-drop"><span class="inner">'+ contents +'</span></span></div><div style="clear:both;"></div>';
+		}
 		var rowlen = $('.row').length;
 		if(rowlen < lines.length) {
 			var extra = lines.length - rowlen;
@@ -39,8 +46,9 @@ $(document).ready(function() {
 		}
 		
 		$('.row').each(function(i, el){
+			var newtext = rowText(lines[i]);
 			window.setTimeout(function(){
-				flipper(el.id, lines[i]);
+				flipper(el.id, newtext);
 			}, i*103);
 		});
 		
@@ -53,7 +61,7 @@ $(document).ready(function() {
 			refresh = true;
 		} else {
 			for(var i=0; i < lines.length; i++) {
-				if(lines[i]["venue"] != last[i]["venue"]) {
+				if(lines[i]["dest"] != last[i]["dest"]) {
 					refresh = true;
 				}
 			}
@@ -66,14 +74,14 @@ $(document).ready(function() {
 		
 	var refreshGrid = function(){
 		$.getJSON('/platformdata?stn=YAT', function(data) { 
-			var lines = data
+			var lines = data['trains']
 			if(shouldRender(lines, last)){
 				blocky(lines);
 			}
 		});
 	};
 	
-	window.setInterval(refreshGrid, 1000*90)
-	window.setTimeout(refreshGrid, 1200)
+	refreshGrid();
+
   
 });

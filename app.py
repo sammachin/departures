@@ -77,7 +77,9 @@ class Start(object):
 					if plat != "None":
 						train['plat'] = plat
 					trains.append(train)
-		return json.dumps(trains)
+		output = {}
+		output['trains'] = trains
+		return json.dumps(output)
 	index.exposed = True
 	platformdata.exposed = True
 
