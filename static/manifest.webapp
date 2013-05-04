@@ -7,8 +7,8 @@
     "url": "http://sammachin.com"
   },
   "icons": {
-    "64": "/static/style/icons/icon.png",
-	"128": "/static/style/icons/icon.png"
+    "64": "/static/style/icons/train.png",
+	"128": "/static/style/icons/train@2x.png"
   },
   "orientation": "portrait-primary"
 }

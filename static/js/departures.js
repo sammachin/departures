@@ -25,12 +25,15 @@ $(document).ready(function() {
 	}
 
 
-	function rowText(train) {
-			if (train["plat"] === undefined){
-				contents = train["time"] + ": " +train["dest"];
+	function rowText(text) {
+			if (text["message"] === true){
+				contents = text["text"];
+			}
+			else if (text["plat"] === undefined){
+				contents = text["time"] + ": " +text["dest"];
 			}
 			else{
-				contents = train["time"] + ": " +train["dest"] + '<span class="platform">' + train["plat"] + '&nbsp;</span>';
+				contents = text["time"] + ": " +text["dest"] + '<span class="platform">' + text["plat"] + '&nbsp;</span>';
 			}
 			
 			return contents;
@@ -76,7 +79,7 @@ $(document).ready(function() {
 		return refresh;
 	}
 	
-	blocky(["Welcome", "to", "Departures"])
+	blocky([{"message": true, "text" : "Welcome"},{"message": true, "text" : "to"} , {"message": true, "text" : "Departures"}])
 		
 	var refreshGrid = function(){
 		$.getJSON('/platformdata?stn=BRI', function(data) { 
@@ -87,8 +90,19 @@ $(document).ready(function() {
 		});
 	};
 	
-	window.setInterval(refreshGrid, 1000*90)
-	window.setTimeout(refreshGrid, 1200)
+	var timer;
+	
+	document.addEventListener('visibilitychange', function onVisibilityChange() { 
+		if (document.hidden) { 
+			window.clearInterval(timer); 
+			} 
+		else { 
+			refreshGrid();
+			timer = window.setInterval(refreshGrid, 1000*90)
+			}});
+	
+	timer = window.setInterval(refreshGrid, 1000*90);
+	window.setTimeout(refreshGrid, 2000);
 
   
 });
